@@ -1,0 +1,2 @@
+import { useEffect, useState } from 'react'; import { api } from '../lib/api';
+export default function DashboardPage(){const [data,setData]=useState<any>(); useEffect(()=>{api.get('/dashboard').then(r=>setData(r.data));},[]); if(!data) return <p>Loading...</p>; return <div className='space-y-4'><h1 className='text-2xl font-bold'>Dashboard ({data.role})</h1><pre className='bg-white p-3 rounded border overflow-auto text-xs'>{JSON.stringify(data,null,2)}</pre></div>}
