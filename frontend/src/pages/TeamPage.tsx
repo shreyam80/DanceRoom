@@ -1,0 +1,2 @@
+import { useEffect,useState } from 'react'; import { useParams } from 'react-router-dom'; import { api } from '../lib/api';
+export default function TeamPage(){const {teamId}=useParams();const [data,setData]=useState<any>(); useEffect(()=>{api.get(`/teams/${teamId}`).then(r=>setData(r.data));},[teamId]); if(!data) return <p>Loading...</p>; return <div><h1 className='text-xl font-bold'>{data.team.name}</h1><pre>{JSON.stringify(data.members,null,2)}</pre></div>}
